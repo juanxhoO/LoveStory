@@ -18,11 +18,12 @@ body {
   --circle-size: 220px;
   --gap: 80px;
   --line-color: #7c4dff;
-  --line-thickness: 10px;
+  --line-thickness: 15px;
 }
 
 .intro-screen {
   position: fixed;
+  padding: 1rem;
   inset: 0;
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 27, 75, 0.8));
   backdrop-filter: blur(5px);
@@ -119,6 +120,9 @@ body {
   align-self: flex-end;
 }
 
+
+
+
 .memory::after {
   content: "";
   position: absolute;
@@ -130,17 +134,26 @@ body {
   pointer-events: none;
 }
 
+.memory:last-child::after {
+  left: calc(var(--circle-size) / 2 + 100px);
+  width: calc(min(100vw - 2rem, var(--container-width)) - var(--circle-size) + var(--line-thickness) / 2 - 80px);
+
+  border-bottom: none;
+  border-left: none;
+  border-radius: 0 150px 0 0;
+}
+
 .memory:nth-child(odd):not(:last-child)::after {
-  left: calc(var(--circle-size) / 2);
-  width: calc(min(100vw - 2rem, var(--container-width)) - var(--circle-size) + var(--line-thickness) / 2);
+  left: calc(var(--circle-size) / 2 + 100px);
+  width: calc(min(100vw - 2rem, var(--container-width)) - var(--circle-size) + var(--line-thickness) / 2 - 80px);
   border-bottom: none;
   border-left: none;
   border-radius: 0 150px 0 0;
 }
 
 .memory:nth-child(even):not(:last-child)::after {
-  right: calc(var(--circle-size) / 2);
-  width: calc(min(100vw - 2rem, var(--container-width)) - var(--circle-size) + var(--line-thickness) / 2);
+  right: calc(var(--circle-size) / 2 + 100px);
+  width: calc(min(100vw - 2rem, var(--container-width)) - var(--circle-size) + var(--line-thickness) / 2 - 80px);
   border-bottom: none;
   border-right: none;
   border-radius: 150px 0 0 0;
