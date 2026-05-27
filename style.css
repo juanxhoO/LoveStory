@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url('background.webp') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  padding: 1rem;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+:root {
+  --container-width: 800px;
+  --circle-size: 220px;
+  --gap: 80px;
+  --line-color: #7c4dff;
+  --line-thickness: 10px;
+}
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 27, 75, 0.8));
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 1s ease-out, visibility 1s ease-out;
+}
+
+.intro-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.intro-screen h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+.intro-screen p {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  margin-bottom: 3rem;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.timeline {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-in 0.5s, visibility 1s ease-in 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  position: relative;
+  padding: 50px 0;
+}
+
+.timeline.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.line {
+  display: none;
+}
+
+.main-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  z-index: 3;
+}
+
+.memory {
+  position: relative;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 50%;
+  border: 4px solid white;
+  background: #0f172a;
+  z-index: 2;
+  cursor: pointer;
+  transition: transform .3s;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.memory:nth-child(odd) {
+  align-self: flex-start;
+}
+
+.memory:nth-child(even) {
+  align-self: flex-end;
+}
+
+.memory::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--circle-size) / 2 - var(--line-thickness) / 2);
+  height: calc(var(--circle-size) + var(--gap) + var(--line-thickness) / 2);
+  border: var(--line-thickness) solid var(--line-color);
+  box-sizing: border-box;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.memory:nth-child(odd):not(:last-child)::after {
+  left: calc(var(--circle-size) / 2);
+  width: calc(min(100vw - 2rem, var(--container-width)) - var(--circle-size) + var(--line-thickness) / 2);
+  border-bottom: none;
+  border-left: none;
+  border-radius: 0 150px 0 0;
+}
+
+.memory:nth-child(even):not(:last-child)::after {
+  right: calc(var(--circle-size) / 2);
+  width: calc(min(100vw - 2rem, var(--container-width)) - var(--circle-size) + var(--line-thickness) / 2);
+  border-bottom: none;
+  border-right: none;
+  border-radius: 150px 0 0 0;
+}
+
+.memory:hover {
+  transform: scale(1.05);
+}
+
+.memory img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+#musicBtn {
+  background: #ff4d88;
+  border: none;
+  color: white;
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 20px rgba(255, 77, 136, 0.4);
+}
+
+#musicBtn:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: #ff2a6d;
+  box-shadow: 0 15px 25px rgba(255, 77, 136, 0.6);
+}
+
+/* MODAL */
+
+.modal {
+  z-index: 100;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  z-index: 9999;
+  width: 100%;
+  max-width: 320px;
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+}
+
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+  display: block;
+  pointer-events: none;
+}
