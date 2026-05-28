@@ -17,7 +17,7 @@ body {
   --container-width: 800px;
   --circle-size: 220px;
   --gap: 80px;
-  --line-color: #7c4dff;
+  --line-color: #cad4ed;
   --line-thickness: 15px;
 }
 
@@ -120,9 +120,6 @@ body {
   align-self: flex-end;
 }
 
-
-
-
 .memory::after {
   content: "";
   position: absolute;
@@ -195,6 +192,8 @@ body {
   z-index: 100;
   position: fixed;
   inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   align-items: center;
